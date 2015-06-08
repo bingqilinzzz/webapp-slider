@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<link rel="stylesheet" type="text/css" href="bower_components/Swiper/dist/css/swiper.min.css">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+<body>
+	<div id="head">head</div>
+	<div id="head-img"><img src="img/135.jpg"></div>
+	<div id="body">
+		<div id="body-head">
+	<!--		<div id="title">
+				<ul class="flex">
+					<li class="flex-1">软件</li>
+					<li class="flex-1">游戏</li>
+				</ul>
+			</div>  -->
+			<div id="nav" class="nav flex"></div>
+		</div>
+
+		<div id="body-slider" class="swiper-container">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<ul>
+						<li>line1</li>
+						<li>line1</li>
+						<li>line1</li>
+						<li>line1</li>
+						<li>line1</li>
+						<li>line1</li>
+						<li>line1</li>
+						<li>line1</li>
+						<li>line1</li>
+						<li>line1</li>
+						<li>line1</li>
+						<li>line1</li>
+						<li>line1</li>
+						<li>line1</li>
+						<li>line1</li>
+						<li>line1</li>
+						<li>line1</li>
+						<li>line1</li>
+						<li>line1</li>
+						<li>line1</li>
+					</ul>
+				</div>
+				<div class="swiper-slide">Slide 2</div>
+				<div class="swiper-slide">Slide 3</div>
+			</div>
+			<div class="swiper-pagination"></div>
+		</div>
+	</div>
+	<script type="text/javascript" src="bower_components/Swiper/dist/js/swiper.jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="bower_components/Swiper/dist/js/swiper.min.js"></script>
+	<script type="text/javascript">
+	var array = ['软件','游戏','888999'];
+	var swiper = new Swiper('.swiper-container',{
+		pagination:'.nav',
+		paginationClickable:true,
+		paginationBulletRender: function(index,className) {
+			console.log(className);
+			return '<span class="' + className + '">' + '<span>' + array[index] +'</span>' +'</span>';
+		// return '<span class="' + className + '">' + (index + 1) + '</span>';
+		}
+
+	});
+
+
+	$(document).ready(function(){
+		$(window).scroll(function(){
+			if($(window).scrollTop() >= $("#head-img").height() - $("#head").height()){
+				$("#body-head").addClass('fixed');
+			} else {
+				$("#body-head").removeClass('fixed');
+			}
+		})
+		$("#body-head").append('<div style="background-color:#d3d3d3;height:2px;"><div id="slider-line"></div></div>');
+		var left = $("#nav span:first-child span").position().left - 5;
+		var width = $("#nav span:first-child span").width() + 10;
+		$("#slider-line").css({'left':left,'width':width});
+		$("#nav span").click(function(){
+			var left = $(this).find("span").position().left - 5;
+			var width = $(this).find("span").width() + 10;
+			$("#slider-line").stop().animate({
+				'left':left,
+				'width':width
+			});
+		});
+
+	});
+	</script>
+	<style type="text/css">
+	#slider-line {
+		position: absolute;
+		background-color: red;
+		z-index: 20;
+		height: 2px;
+	}
+	</style>
+</body>
+</html>
