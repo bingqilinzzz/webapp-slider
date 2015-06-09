@@ -65,12 +65,50 @@
 			console.log(className);
 			return '<span class="' + className + '">' + '<span>' + array[index] +'</span>' +'</span>';
 		// return '<span class="' + className + '">' + (index + 1) + '</span>';
+		},
+		onInit: function(swiper) {
+			$("#body-head").append('<div style="background-color:#d3d3d3;height:2px;"><div id="slider-line"></div></div>');
+			var left = $("#nav span:first-child span").position().left - 5;
+			var width = $("#nav span:first-child span").width() + 10;
+			$("#slider-line").css({'left':left,'width':width});
+		},
+		onSlideChangeStart: function(swiper) {
+			console.log(swiper);
+			var span = $("#nav>span").get(swiper.activeIndex);
+			//console.log($this);
+			console.log($(span).find("span"));
+			var left = $(span).find("span").position().left - 5;
+			console.log(left);
+			var width = $(span).find("span").width() + 10;
+			$("#slider-line").stop().animate({
+				'left':left,
+				'width':width
+			});
+		},
+		onSliderMove: function(swiper,event) {
+			console.log(event);
 		}
 
 	});
 
 
 	$(document).ready(function(){
+
+/*		$("#body-head").append('<div style="background-color:#d3d3d3;height:2px;"><div id="slider-line"></div></div>');
+		var left = $("#nav span:first-child span").position().left - 5;
+		var width = $("#nav span:first-child span").width() + 10;
+		$("#slider-line").css({'left':left,'width':width});
+/*		$("#nav>span").click(function(){
+	
+			var left = $(this).find("span").position().left - 5;
+					console.log(left);
+			var width = $(this).find("span").width() + 10;
+			$("#slider-line").stop().animate({
+				'left':left,
+				'width':width
+			});
+		});  */
+
 		$(window).scroll(function(){
 			if($(window).scrollTop() >= $("#head-img").height() - $("#head").height()){
 				$("#body-head").addClass('fixed');
@@ -78,18 +116,6 @@
 				$("#body-head").removeClass('fixed');
 			}
 		})
-		$("#body-head").append('<div style="background-color:#d3d3d3;height:2px;"><div id="slider-line"></div></div>');
-		var left = $("#nav span:first-child span").position().left - 5;
-		var width = $("#nav span:first-child span").width() + 10;
-		$("#slider-line").css({'left':left,'width':width});
-		$("#nav span").click(function(){
-			var left = $(this).find("span").position().left - 5;
-			var width = $(this).find("span").width() + 10;
-			$("#slider-line").stop().animate({
-				'left':left,
-				'width':width
-			});
-		});
 
 	});
 	</script>
