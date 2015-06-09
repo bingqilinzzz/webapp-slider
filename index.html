@@ -25,26 +25,7 @@
 			<div class="swiper-wrapper">
 				<div class="swiper-slide">
 					<ul>
-						<li>line1</li>
-						<li>line1</li>
-						<li>line1</li>
-						<li>line1</li>
-						<li>line1</li>
-						<li>line1</li>
-						<li>line1</li>
-						<li>line1</li>
-						<li>line1</li>
-						<li>line1</li>
-						<li>line1</li>
-						<li>line1</li>
-						<li>line1</li>
-						<li>line1</li>
-						<li>line1</li>
-						<li>line1</li>
-						<li>line1</li>
-						<li>line1</li>
-						<li>line1</li>
-						<li>line1</li>
+
 					</ul>
 				</div>
 				<div class="swiper-slide">Slide 2</div>
@@ -112,6 +93,14 @@
 				$("#body-head").removeClass('fixed');
 			}
 		})
+
+		$.get("color.json",function(data){
+			$.each(data,function(index, color){
+				$("#body-slider ul").append("<li style='height:100px;padding-left:30px;line-height:100px;'>" + color.cn+ "</li>");
+				$("#body-slider ul li:last-child").css("background-color", "#" +color.rgb);
+				console.log(1);
+			});
+		});
 
 	});
 	</script>
